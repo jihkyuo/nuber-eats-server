@@ -3,12 +3,13 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver } from '@nestjs/apollo';
 import { RestaurantsModule } from './restaurants/restaurants.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
-    GraphQLModule.forRoot({
-      driver: ApolloDriver,
-      autoSchemaFile: true,
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: process.env.NODE_ENV === 'dev' ? '.env.dev' : '.env.test',
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
@@ -19,6 +20,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       database: 'nuber-eats',
       synchronize: true,
       logging: true,
+    }),
+    GraphQLModule.forRoot({
+      driver: ApolloDriver,
+      autoSchemaFile: true,
     }),
     RestaurantsModule,
   ],

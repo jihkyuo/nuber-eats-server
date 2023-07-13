@@ -1,9 +1,9 @@
 import { ArgsType, Field } from '@nestjs/graphql';
-import { Restaurant } from '../entities/restaurants.entity';
 import { IsBoolean, IsString, Length } from 'class-validator';
 
 @ArgsType()
-export class CreateRestaurantDto implements Restaurant {
+export class CreateRestaurantDto {
+
   @Field(type => String)
   @IsString()
   address: string;

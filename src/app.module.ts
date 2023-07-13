@@ -5,6 +5,7 @@ import { RestaurantsModule } from './restaurants/restaurants.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from 'joi';
+import { Restaurant } from './restaurants/entities/restaurants.entity';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import * as Joi from 'joi';
       database: process.env.DB_NAME,
       synchronize: true,
       logging: true,
+      entities: [ Restaurant ],
     }),
     GraphQLModule.forRoot({
       driver: ApolloDriver,

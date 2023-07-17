@@ -10,7 +10,7 @@ export class RestaurantService {
   ) {
   }
 
-  getAll(): Restaurant[] {
-    return [];
+  getAll(): Promise<Restaurant[]> {
+    return this.restaurants.find()
   }
 }

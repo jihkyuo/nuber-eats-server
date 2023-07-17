@@ -10,8 +10,8 @@ export class RestaurantsResolver {
   }
 
   @Query(returns => [ Restaurant ])
-  restaurants(): Restaurant[] {
-    return this.restaurantService.getAll()
+  restaurants(): Promise<Restaurant[]> {
+    return this.restaurantService.getAll();
   }
 
   @Mutation(returns => Boolean)

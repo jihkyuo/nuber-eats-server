@@ -1,6 +1,6 @@
 import { Field, InputType, ObjectType } from '@nestjs/graphql';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { IsBoolean, IsString, Length } from 'class-validator';
+import { IsBoolean, IsOptional, IsString, Length } from 'class-validator';
 
 @InputType({ isAbstract: true })
 @ObjectType()
@@ -17,20 +17,13 @@ export class Restaurant {
   @Length(5)
   name: string;
 
-  @Field(type => Boolean)
-  @Column()
+  @Field(type => Boolean, { defaultValue: true })
+  @Column({ default: true })
+  @IsOptional()
   @IsBoolean()
   isVegan: boolean;
 
   @Field(type => String)
   @Column()
   address: string;
-
-  @Field(type => String)
-  @Column()
-  ownerName: string;
-
-  @Field(type => String)
-  @Column()
-  categoryName: string;
 }

@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Restaurant } from './entities/restaurants.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { CreateRestaurantDto } from './dtos/create-restaurant.dto';
 
 @Injectable()
 export class RestaurantService {
@@ -11,6 +12,11 @@ export class RestaurantService {
   }
 
   getAll(): Promise<Restaurant[]> {
-    return this.restaurants.find()
+    return this.restaurants.find();
+  }
+
+  createRestaurant(createRestaurantInput: CreateRestaurantDto): Promise<Restaurant> {
+    const newRestaurant = this.restaurants.create(createRestaurantInput);
+    return this.restaurants.save(newRestaurant);
   }
 }

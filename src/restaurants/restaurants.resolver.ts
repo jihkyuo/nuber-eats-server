@@ -30,9 +30,8 @@ export class RestaurantsResolver {
 
   @Mutation(returns => Boolean)
   async updateRestaurant(
-    @Args('id') id: number,
-    @Args('data') data: UpdateRestaurantDto,
+    @Args() updateRestaurantInput: UpdateRestaurantDto,
   ) {
-
+    return true;
   }
 }

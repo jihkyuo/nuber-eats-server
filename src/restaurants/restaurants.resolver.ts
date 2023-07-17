@@ -10,9 +10,8 @@ export class RestaurantsResolver {
   }
 
   @Query(returns => [ Restaurant ])
-  restaurants(@Args('veganOnly') veganOnly: boolean): Restaurant[] {
-    console.log(veganOnly);
-    return [];
+  restaurants(): Restaurant[] {
+    return this.restaurantService.getAll()
   }
 
   @Mutation(returns => Boolean)
